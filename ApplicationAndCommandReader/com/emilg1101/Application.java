@@ -13,7 +13,7 @@ public class Application implements CommandReader.ErrorListener {
 
     public void init() {
         System.out.println(this.getClass().getSimpleName() + " init()");
-        addCommand("/exit", data -> System.exit(0));
+        addCommand("/exit", params -> System.exit(0));
     }
 
     public void start() {

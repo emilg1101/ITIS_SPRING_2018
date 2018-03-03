@@ -9,8 +9,18 @@ public class PlayerApp extends Application {
     @Override
     public void init() {
         super.init();
-        addCommand("/add", data -> System.out.println("add command"));
-        addCommand("/playlist create", data -> System.out.println("playlist create command"));
+        addCommand("/add", new CommandListener() {
+            @Override
+            public void response(String[] params) {
+                System.out.println("add command");
+            }
+        });
+        addCommand("/playlist create", new CommandListener() {
+            @Override
+            public void response(String[] params) {
+                System.out.println("playlist create command");
+            }
+        });
     }
 
     @Override

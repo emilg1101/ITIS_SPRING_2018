@@ -31,18 +31,29 @@ public class CommandReader {
             if (line.isEmpty()) break;
             data = line.split(" ");
             String command;
+            String[] params;
 
             if (data.length > 1 && commandSet.containsKey(data[0] + " " + data[1])) {
                 command = data[0] + " " + data[1];
+                params = getParams(data, 2);
             } else if (commandSet.containsKey(data[0])) {
                 command = data[0];
+                params = getParams(data, 1);
             } else {
                 errorListener.error("Command not found");
                 continue;
             }
 
-            commandSet.get(command).response(data);
+            commandSet.get(command).response(params);
         }
+    }
+
+    private String[] getParams(String[] data, int start) {
+        String[] params = new String[data.length - start];
+        for (int i = 0; i < params.length; i++) {
+            params[i] = data[i + start];
+        }
+        return params;
     }
 
     interface ErrorListener {
